@@ -1,3 +1,8 @@
+const express = require("express");
+
+const app = express();
+app.use(express.json());
+
 app.post("/webhook/orders", async (req, res) => {
   try {
     const order = req.body;
@@ -43,4 +48,12 @@ app.post("/webhook/orders", async (req, res) => {
     console.error("❌ SERVER ERROR:", err);
     res.status(500).send("Error");
   }
+});
+
+app.get("/", (req, res) => {
+  res.send("Server läuft");
+});
+
+app.listen(3000, () => {
+  console.log("Server läuft auf Port 3000");
 });
